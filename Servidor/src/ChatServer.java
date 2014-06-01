@@ -20,13 +20,11 @@ import java.util.concurrent.Executors;
 import org.apache.commons.io.IOUtils;
  
 public class ChatServer {
-<<<<<<< HEAD
+
     private static int port = 8080; /* port to listen on */
-=======
-    private static int port = 8082; /* port to listen on */
     private static final int fNumberOfThreads = 100;
 	private static final Executor fThreadPool = Executors.newFixedThreadPool(fNumberOfThreads);
->>>>>>> aece7b348338a464cb9bb3efd7cc3f2c0a9ea8c5
+
  
     public static void main (String[] args) throws IOException {
  
