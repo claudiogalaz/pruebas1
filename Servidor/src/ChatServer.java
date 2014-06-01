@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.util.Hashtable;
  
 public class ChatServer {
-    private static int port = 1001; /* port to listen on */
+    private static int port = 8080; /* port to listen on */
  
     public static void main (String[] args) throws IOException {
  
