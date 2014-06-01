@@ -3,12 +3,15 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class ChatClient {
+<<<<<<< HEAD
 private static int port = 8080; /* port to connect to */
+=======
+private static int port = 8082; /* port to connect to */
+>>>>>>> aece7b348338a464cb9bb3efd7cc3f2c0a9ea8c5
 private static String host = "localhost"; /* host to connect to */
 
 private static BufferedReader stdIn;
@@ -63,6 +66,7 @@ public static void main (String[] args) throws IOException {
         out.println(msg);
     }
   }
+
 }
 
 class ServerConn implements Runnable {
