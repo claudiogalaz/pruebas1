@@ -208,6 +208,7 @@ class ClientConn implements Runnable {
      			if (uri.equals("/"))
      			{
      				home(out);
+     				System.out.println("agsdglafbladbg funcionó creo");
      			}
      			else if (uri.equals("/ingresar"))
      			{
@@ -215,7 +216,10 @@ class ClientConn implements Runnable {
      	 			String form = IOUtils.toString(archivo, "UTF-8");
      				out.println(form);
      			}
-     			
+     			if (uri.equals("/chat"))
+     			{
+     				chatear(out);
+     			}
      			
                 out.println("SERVER: " + response);
             }
@@ -226,7 +230,39 @@ class ClientConn implements Runnable {
 		}
     }
  
-    private void decodeParms(String parms, Properties p) throws InterruptedException {
+    private void chatear(PrintWriter out) {
+    	out.println("HTTP/1.1 200 OK");
+		out.println("Content-Type: text/html\n");
+		out.println
+		(
+				"<html>"+
+						"<head >"+
+							"<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>"+
+							"<title>Chat</title>"+
+						"</head>"+
+				"<body>"+
+				"<center>"+
+				"<h1>Chat</h1>"+
+				"<table style = \"width:300px\" border= \"1\" align= \"center\" "+
+					"<tr>"+
+						"<td>probandosagsdba oadsbglsd</td>"+
+					"</tr>"						
+		);
+		//leer(out);
+		out.println
+		(
+				"</table>"+
+				"<form action= '/'>"+
+			    "<input type='submit' value='Home'>"+
+			    "</form>"+
+				"</center>"+
+				"</body>"+
+				"</html>"
+		);		
+		
+	}
+
+	private void decodeParms(String parms, Properties p) throws InterruptedException {
 	      if (parms == null)
 		        return;
 
@@ -292,6 +328,9 @@ class ClientConn implements Runnable {
 					"</table>"+
 					"<form action= '/ingresar'>"+
 				    "<input type='submit' value='Agregar Contacto'>"+
+				    "</form>"+
+				    "<form action= '/chat'>"+
+				    "<input type='submit' value='Ingresar al Chat'>"+
 				    "</form>"+
 					"</center>"+
 					"</body>"+
