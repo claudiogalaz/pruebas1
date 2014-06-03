@@ -96,20 +96,7 @@ public class JavaWebServer
 	    }
 	    
 	    /* obtain an output stream to the server... */
-	    try {
-			PrintWriter out = new PrintWriter(server.getOutputStream(), true);
-		
-		    /* ... and an input stream */
-		    BufferedReader in = new BufferedReader(new InputStreamReader(
-		                server.getInputStream()));
-		    out.println("NICK claudio");
-		    ServerConn sc = new ServerConn(server);
-		    Thread t = new Thread(sc);
-		    t.start();
-		} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-		}
+	    
 	    
 	    
 	    
@@ -129,7 +116,18 @@ public class JavaWebServer
 	    
  		try 
  		{
- 			 			
+ 			 	
+ 			PrintWriter out = new PrintWriter(server.getOutputStream(), true);
+ 			
+		    /* ... and an input stream */
+		    BufferedReader in = new BufferedReader(new InputStreamReader(
+		                server.getInputStream()));
+
+		    ServerConn sc = new ServerConn(server);
+		    Thread t = new Thread(sc);
+		    t.start();
+ 			
+ 			
  			String webServerAddress = s.getInetAddress().toString();
  			System.out.println("New Connection:" + webServerAddress);
  			inHTTP = new BufferedReader(new InputStreamReader(s.getInputStream()));
@@ -189,9 +187,10 @@ public class JavaWebServer
  		          
 					decodeParms(postLine, parms);
 					
-					guardar(parms);
+					//guardar(parms);
 					String name = parms.getProperty("Name");
-					System.out.println(name);
+					//System.out.println(name);
+					out.println("NICK " + name);
  		    }
  	        
  	        
@@ -201,7 +200,7 @@ public class JavaWebServer
  			outHTTP = new PrintWriter(s.getOutputStream(), true);
  			
  			//el metodo es GET
- 			if (uri.equals("/"))
+ 			/*if (uri.equals("/"))
  			{	
  				outHTTP.println("HTTP/1.1 200 OK");
  				outHTTP.println("Content-Type: text/html\n");
@@ -236,6 +235,8 @@ public class JavaWebServer
  				
  			}
  			else if (uri.equals("/ingresar"))
+ 			{*/
+ 			if (uri.equals("/"))
  			{
  				InputStream archivo = new FileInputStream ("form.html");
  	 			String form = IOUtils.toString(archivo, "UTF-8");
