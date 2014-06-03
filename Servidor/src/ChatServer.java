@@ -37,31 +37,23 @@ public class ChatServer {
             System.exit(1);
         }
  
-        //final Socket client = null;
+        Socket client = null;
         while(true) {
             try {
-                final Socket client = server.accept();
-                Runnable task = new Runnable() 
-	  			{ 
-	  				//@Override 
-	  				public void run() 
-	  				{ 
-	  					HandleRequest(client);
-	  				} 
-	  			};
-				fThreadPool.execute(task);
+                client = server.accept();
+                
             } catch (IOException e) {
                 System.err.println("Accept failed.");
                 System.err.println(e);
                 System.exit(1);
             }
             /* start a new thread to handle this client */
-            //Thread t = new Thread(new ClientConn(client));
-            //t.start();
+            Thread t = new Thread(new ClientConn(client));
+            t.start();
         }
     }
     
-    private static void HandleRequest(Socket s) 
+    /*private static void HandleRequest(Socket s) 
     { 
     	BufferedReader in;
     	PrintWriter out;
@@ -336,7 +328,7 @@ public class ChatServer {
     		e.printStackTrace();
     	}
     	
-    }
+    }*/
 }
 
 
